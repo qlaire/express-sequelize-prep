@@ -73,8 +73,8 @@ describe('Tweet Model', function () {
             })
         });
     });
-    
-    xdescribe('Additional Model Properties', function () {
+
+    describe('Additional Model Properties', function () {
         it('has a virtual array of hashtags included in the tweet', function () {
             return Tweet.findOne({ where: { text: mainTweetText } })
             .then(function (tweet) {
@@ -104,7 +104,7 @@ describe('Tweet Model', function () {
         });
     });
 
-    xdescribe('Relations/Associations', function () {
+    describe('Relations/Associations', function () {
         it('belongs to a user', function () {
             return noPats.setUser(json)
             .then(function () {
