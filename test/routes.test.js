@@ -8,7 +8,7 @@ let expect = chai.expect;
 let Promise = require('bluebird');
 chai.use(require('chai-things'));
 
-xdescribe('Tweet Routes', function () {
+describe('Tweet Routes', function () {
     before(function () {
         return db.sync({force: true});
     });
@@ -124,9 +124,9 @@ xdescribe('Tweet Routes', function () {
 
         it('saves the update', function () {
             return Tweet.findById(tweet.id)
-            .then(function (tweet) {
-                expect(tweet).to.exist;
-                expect(tweet.dateCreated.getFullYear()).to.equal(1975);
+            .then(function (foundTweet) {
+                expect(foundTweet).to.exist;
+                expect(foundTweet.dateCreated.getFullYear()).to.equal(1975);
             })
         })
     })

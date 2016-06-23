@@ -16,29 +16,29 @@ let Tweet = db.define('Tweet', {
   }
 }, {
   getterMethods: {
-    hashtags: function() {
+    hashtags: function () {
       var regex = /#\w+/gi;
-      return this.text.match(regex);  
+      return this.text.match(regex);
     }
-  }
-}, {
+  },
   instanceMethods: {
-    timeWarp: function() {
-      return this.update({dateCreated: new Date('September 25, 1975')});
+    timeWarp: function () {
+      return this.update({ dateCreated: new Date('September 25, 1975') });
     }
-  }
-}, {
+  },
   classMethods: {
-    findByHashtag: function(hashtag) {
+    findByHashtag: function (hashtag) {
       return Tweet.findAll({
         where: {
           text: {
-            $like: '%' + hashtag + '%'
+            $like: '%' + hashtag + '%' // translates to `SELECT * FROM Tweets WHERE text LIKE "%{hashtag}%"`
           }
         }
       });
     }
   }
 });
+
+Tweet.belongsTo(User); // adds UserId column to table and setUser instance method
 
 module.exports = Tweet;
